@@ -4,6 +4,9 @@ class Ciudad {
 	constructor(_ciudad){
 		ciudad=_ciudad
 	}
+	method getDomicilios(){
+		return domicilios
+	}
 	
 	method addDomicilios(vivienda){
 			domicilios.add(vivienda)
@@ -14,7 +17,7 @@ class Ciudad {
 	}
 	
 	method poblacionTotal(){
-		return domicilios.sum{n => n.getIntegrantes().length()}
+		return domicilios.sum{n => n.getIntegrantes().size()}
 	}
 	
 	method masLento(){
