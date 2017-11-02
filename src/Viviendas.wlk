@@ -22,7 +22,7 @@ class Vivienda{
 	}
 	
 	method cuantoTarda(){
-		return tipoCensista.tiempo(self)
+		return tipoCensista.tarda(self)
 	}
 	
 	
@@ -46,7 +46,7 @@ class ViviendaSimple inherits Vivienda {
 		return  artefactos.contains('computadora') && integrantes.all{ n =>n.esProfesional()}
 	}
 	method tipoCensista(tipoCensista){
-		return tipoCensista.tiempo()
+		return tipoCensista.tarda()
 	}
 	
 }
