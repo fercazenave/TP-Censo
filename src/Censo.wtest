@@ -1,0 +1,47 @@
+import Viviendas.*
+import Ciudad.*
+import Censista.*
+import FormularioPersonas.*
+describe "test Domicilios Hacinados"{
+	var zarate
+	var antropologo1
+	var vivienda
+	var carlos
+	var cristian
+	var esteban
+	var vivienda2
+	
+	fixture{
+		 zarate = new Ciudad('Zárate')
+		 antropologo1 = new Antropologo('Mayas')
+		 vivienda = new ViviendaSimple(zarate,antropologo1,['living','comedor',
+		'habitaciones','cocina'],['computadora','camas','play']) 
+		 carlos = new FormularioPersonaReducido(72,'universitario')
+		 cristian = new FormularioPersonaExtendido(22,'universitario',true,true,false)
+		 esteban = new FormularioPersonaExtendido(19,'universitario',true,true,false)
+		 vivienda2 = new ViviendaSimple(zarate,voluntario,['living'],['computadora'])
+		//Agrego integrantes a las viviendas 
+		vivienda.agregarIntegrantes(carlos)
+		vivienda2.agregarIntegrantes(carlos)
+		vivienda2.agregarIntegrantes(cristian)
+		vivienda2.agregarIntegrantes(esteban)
+	}
+	test "Chequear si hay integrantes"{
+		assert.equals(false,vivienda.getIntegrantes().isEmpty())
+		
+	}
+	test "Vivienda2 es Hacinada"{
+		assert.equals(true,vivienda2.esHacinada())
+	}
+	test "pobacion zarate"{
+		assert.equals(4,zarate.poblacionTotal())
+		
+	}
+	test "viviendas Hacinadas Zarate"{
+		assert.equals(1,zarate.getDomiciliosHacinados().size())
+		
+	}
+	test "tiempo tarda el censista en la vivienda2"{
+		assert.equals(20,vivienda2.cuantoTarda())
+	}
+}
